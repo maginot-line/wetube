@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import { cls } from "../libs/utils";
@@ -53,7 +54,7 @@ export default function Layout({ children }: LayoutProps) {
     setSideBar(!sideBar);
   };
   useEffect(() => {
-    if (sideBar) {
+    if (!sideBar) {
       sideRef.current.style.transition = "all 0.2s ease-in-out";
       sideRef.current.style.transform = `translateX(-100%)`;
       navRef.current.style.opacity = "1";
@@ -82,7 +83,7 @@ export default function Layout({ children }: LayoutProps) {
     <div className="relative overflow-x-hidden">
       <nav
         ref={sideRef}
-        className="absolute left-0 z-10 mx-auto h-full w-56 bg-gray-900"
+        className="absolute left-0 z-10 mx-auto h-full w-56 -translate-x-full bg-gray-900"
       >
         <div className="flex items-center space-x-5 border-b border-gray-700 py-[0.9rem] px-6">
           <button onClick={sideBtn}>
@@ -238,7 +239,11 @@ export default function Layout({ children }: LayoutProps) {
                 d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
               />
             </svg>
-            <div className="h-8 w-8 rounded-full bg-slate-300" />
+            <Link href="/enter">
+              <a href="">
+                <div className="h-8 w-8 rounded-full bg-slate-300" />
+              </a>
+            </Link>
           </div>
         </div>
         <div className="relative flex items-center overflow-hidden border-b border-gray-700 py-3 px-6">
